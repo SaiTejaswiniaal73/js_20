@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color:aqua;
+}
+h1 {
+    font-size: 2rem;
+    color: white;
+    margin-top:-400px; /* Space between title and calculator */
+    background-color: #f50699f5;
+
+}
+
+/* Calculator Container */
+.md {
+    width: 300px;
+    border-radius: 15px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Display Input */
+input {
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    font-size: 1.5rem;
+    text-align: right;
+    border: none;
+    border-radius: 10px;
+    background-color:rgba(246, 179, 179, 0.79);
+    box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Button Grid */
+.md div {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+
+/* Button Styles */
+button {
+    flex: 1;
+    margin: 5px;
+    padding: 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    background: rgb(231, 164, 139);
+    color: #333;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hover and Active Effects */
+button:hover {
+    background: linear-gradient(145deg, #f8f8f8, #d6d6d6);
+    transform: scale(1.05);
+}
+
+button:active {
+    background-color: #ff9a9e;
+    color: white;
+    transform: scale(0.95);
+}
+
+/* Special Button Colors */
+button[value="="] {
+    background: #ff4081;
+    color: white;
+}
+
+button[value="="]:hover {
+    background: #d81b60;
+}
+
+button[value="AC"], button[value="DEL"] {
+    background: #ffcc80;
+}
+
+button[value="AC"]:hover, button[value="DEL"]:hover {
+    background: #ffa726;
+}
+
+/* Responsive Design */
+@media (max-width: 400px) {
+    .md {
+        width: 90%;
+    }
+
+    button {
+        font-size: 1rem;
+        padding: 10px;
+    }
+}
+
+    </style>
+</head>
+<body>  
+    <h1 id="dis">CALCULATOR</h1>
+    <div class="md">
+        <input type="text" id="display">
+        <div>
+            <button value="1" onclick="calc(event)">1</button>
+            <button value="2" onclick="calc(event)">2</button>
+            <button value="3" onclick="calc(event)">3</button>
+            <button value="*" onclick="calc(event)">*</button>
+            <button onclick="del()">DEL</button>  
+        </div>
+        <div>
+            <button value="4" onclick="calc(event)">4</button>
+            <button value="5" onclick="calc(event)">5</button>
+            <button value="6" onclick="calc(event)">6</button>
+            <button value="/" onclick="calc(event)">/</button>
+            <button onclick="allclear(event)">AC</button>
+        </div>
+        <div>
+            
+            <button value="7" onclick="calc(event)">7</button>
+            <button value="8" onclick="calc(event)">8</button>
+            <button value="9" onclick="calc(event)">9</button>
+            <button value="%" onclick="calc(event)">%</button>
+            <button onclick="calculate()">=</button>
+            
+            
+        </div>
+        <div>
+            <button value="0" onclick="calc(event)">0</button>
+            <button value="+" onclick="calc(event)">+</button>
+            <button value="-" onclick="calc(event)">-</button>
+            <button value="." onclick="calc(event)">.</button>
+            <button value="00" onclick="calc(event)">00</button>
+        </div>
+       
+
+    </div>
+    <script>
+let display=document.getElementById("display")
+function calc(event){
+    display.value+=event.target.value
+    
+}
+function calculate(){
+    display.value=eval(display.value)
+
+}
+function del(){
+    display.value=display.value.slice(0,-1)
+}
+function allclear() {
+    display.value = "";
+}
+    </script>
+</body>
+</html>
