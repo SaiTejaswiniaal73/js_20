@@ -5,13 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        /* General Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
+    
 * {
     margin: 0;
     padding: 0;
@@ -21,18 +15,17 @@
 h1{
     color: red;
     margin-top: 30px;
-    font-style: italic;
+    margin-bottom: 20px;
     
 
 }
 body{
     background-color:black;
+    display: flex;
     justify-content: center;
     justify-items: center;
 }
 button{
-    /* display: flex; */
-   
     justify-content: center;
     align-items: center;
     height: 30%;
@@ -40,7 +33,7 @@ button{
     border-color: transparent;
     border-radius: 25%;
     background-color: red;
-    text-align: center; */
+    text-align: center; 
     padding: 5px;
     color:black;
     font-style:italic;
@@ -87,14 +80,16 @@ button:active{
     </style>
 </head>
 <body>  
-    <h1 id="dis">CALCULATOR</h1>
+    
     <div class="md">
+        <h1 id="dis">CALCULATOR</h1>
         <input type="text" id="display">
+        
         <div>
-            <button onclick="allclear(event)">AC</button>
-            <button value="()" onclick="calc(event)">(  )</button>
+            <button onclick="del()">DEL</button>  
             <button value="%" onclick="calc(event)">%</button>
             <button value="/" onclick="calc(event)">/</button>
+            <button onclick="allclear(event)">AC</button>
             
         </div>
         <div>
@@ -117,29 +112,39 @@ button:active{
         </div>
         <div>
             <button value="0" onclick="calc(event)">0</button>
+            <button value="0" onclick="calc(event)">00</button>
             <button value="." onclick="calc(event)">.</button>
-            <button onclick="del()">DEL</button>  
             <button onclick="calculate()">=</button>
+            
+            
         </div>
-       
-
     </div>
     <script>
-let display=document.getElementById("display")
-function calc(event){
-    display.value+=event.target.value
-    
-}
-function calculate(){
-    display.value=eval(display.value)
+         let display = document.getElementById("display");
 
-}
-function del(){
-    display.value=display.value.slice(0,-1)
-}
-function allclear() {
-    display.value = "";
-}
+        function calc(event) {
+            let value = event.target.value;
+            if ("+-*/%.".includes(value) && "+-*/%.".includes(display.value.slice(-1))) return;  
+            display.value += value;
+        }
+
+        function calculate() {
+            try {
+                display.value = new Function("return " + display.value)();
+            } catch {
+                display.value = "Error";
+            }
+        }
+
+        function del() {
+            display.value = display.value.slice(0, -1);
+        }
+
+        function allclear() {
+            display.value = "";
+        }
+
+
     </script>
 </body>
 </html>
